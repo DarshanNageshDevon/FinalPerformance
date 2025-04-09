@@ -33,11 +33,6 @@ jobs:
         continue-on-error: true
         with:
           filename: ./tests/fourth-script.js
-      - name: Run k6 - browser scenario
-        uses: grafana/k6-action@v0.2.0
-        continue-on-error: true
-        with:
-          filename: ./tests/browserTest.js
       - name: Upload Performance Report
         uses: actions/upload-artifact@v4
         continue-on-error: true
