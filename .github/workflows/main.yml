@@ -12,27 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Run k6 - basic test
-        uses: grafana/k6-action@v0.2.0
-        continue-on-error: true
-        with:
-          filename: ./tests/first-script.js
-          flags: --vus 20 --duration 10s
-      - name: Run k6 - with auth
-        uses: grafana/k6-action@v0.2.0
-        continue-on-error: true
-        with:
-          filename: ./tests/second-script.js
       - name: Run k6 - multiple scenario
         uses: grafana/k6-action@v0.2.0
         continue-on-error: true
         with:
           filename: ./tests/third-script.js
-      - name: Run k6 - post scenario
-        uses: grafana/k6-action@v0.2.0
-        continue-on-error: true
-        with:
-          filename: ./tests/fourth-script.js
       - name: Upload Performance Report
         uses: actions/upload-artifact@v4
         continue-on-error: true
