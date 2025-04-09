@@ -1,6 +1,7 @@
 import encoding from 'k6/encoding';
 import http from 'k6/http';
 import { sleep, check } from 'k6';
+import credentials from './usercredentials.json';
 export const options = {
     stages: [{ target: 2, duration: '10s' }],
     thresholds: {
@@ -11,8 +12,11 @@ export const options = {
 const username = 'postman';
 const password = 'password';
 export default function () {
-    const credentials = `${username}:${password}`;
-    const encodedCredentials = encoding.b64encode(credentials);
+    const { username, password } = credentials;
+    const encodedCredentials = encoding.b64encode(`${username}:${password}`);
+
+    // const credentials = `${username}:${password}`;
+    // const encodedCredentials = encoding.b64encode(credentials);
     const options = {
     headers: {
         Authorization: `Basic ${encodedCredentials}`,
